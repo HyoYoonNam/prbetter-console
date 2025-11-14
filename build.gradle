@@ -32,6 +32,9 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.42")
     testCompileOnly("org.projectlombok:lombok:1.18.42")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
+
+    // mockito
+    testImplementation "org.mockito:mockito-core:5.+"
 }
 
 test {
