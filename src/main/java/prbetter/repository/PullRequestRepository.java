@@ -14,4 +14,6 @@ public interface PullRequestRepository {
     List<PullRequest> findAll(String repositoryName);
 
     int sizeOf(String repositoryName);
+
+    boolean has(String repositoryName);
 }

@@ -14,7 +14,7 @@ class PullRequestLoadServiceTest {
     void PullRequest들을_리포지토리에_로드한다() throws IOException, InterruptedException {
         // given
         PullRequestReadService mockReadService = mock();
-        when(mockReadService.readAllPages()).thenReturn(createPullRequests());
+        when(mockReadService.readAllPages(anyString())).thenReturn(createPullRequests());
         PullRequestRepository mockRepository = mock();
 
         PullRequestLoadService lodeService = new PullRequestLoadService(mockRepository, mockReadService);

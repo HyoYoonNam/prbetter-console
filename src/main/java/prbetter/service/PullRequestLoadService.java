@@ -16,7 +16,7 @@ public final class PullRequestLoadService {
     }
 
     public void load(String repositoryName) throws IOException, InterruptedException {
-        readService.readAllPages().stream()
+        readService.readAllPages(repositoryName).stream()
                 .filter(PullRequest::isValidTitle)
                 .forEach(pr -> pullRequestRepository.save(repositoryName, pr));
     }

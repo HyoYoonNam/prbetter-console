@@ -60,4 +60,9 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
     public int sizeOf(String repositoryName) {
         return store.getOrDefault(repositoryName, EMPTY_LIST).size();
     }
+
+    @Override
+    public boolean has(String repositoryName) {
+        return store.containsKey(repositoryName);
+    }
 }

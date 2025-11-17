@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 class PullRequestReadServiceTest {
+
+    private static final int HTTP_OK = 200;
+
     @ParameterizedTest
     @ValueSource(strings = {
             // reference: https://www.ietf.org/rfc/rfc2396.txt
@@ -34,7 +37,7 @@ class PullRequestReadServiceTest {
             "kot{lin", "kot}lin", "kot|lin", "kot\\lin", "kot^lin", "kot[lin", "kot]lin", "kot`lin",
     })
     void 리포지토리_이름이_uri_형식에_맞지_않으면_예외를_발생한다(String invalidRepositoryName) {
-        assertThatThrownBy(() -> PullRequestReadService.of(invalidRepositoryName, HttpClient.newHttpClient()))
+        assertThatThrownBy(() -> new PullRequestReadService(HttpClient.newHttpClient()).readAllPages(invalidRepositoryName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasCauseInstanceOf(URISyntaxException.class);
     }
@@ -43,10 +46,10 @@ class PullRequestReadServiceTest {
     void 한_페이지만_있는_경우_한_번만_읽는다() throws IOException, InterruptedException {
         // given
         HttpClient mockClient = createMockClientResponse1Page();
-        PullRequestReadService readService = PullRequestReadService.of("kotlin-lotto-8", mockClient);
+        PullRequestReadService readService = new PullRequestReadService(mockClient);
 
         // when
-        List<PullRequest> pullRequests = readService.readAllPages();
+        List<PullRequest> pullRequests = readService.readAllPages("kotlin-lotto-8");
 
         // then
         // 1번 읽고, link 헤더가 없을 인지하고 종료
@@ -59,10 +62,10 @@ class PullRequestReadServiceTest {
     void 다음_페이지가_있는_경우_계속_읽는다() throws IOException, InterruptedException, URISyntaxException {
         // given
         HttpClient mockClient = createMockClientResponse2Pages();
-        PullRequestReadService readService = PullRequestReadService.of("kotlin-lotto-8", mockClient);
+        PullRequestReadService readService = new PullRequestReadService(mockClient);
 
         // when
-        List<PullRequest> pullRequests = readService.readAllPages();
+        List<PullRequest> pullRequests = readService.readAllPages("kotlin-lotto-8");
 
         // then
         // 1번 읽고, 마지막 페이지가 아니니까(rel="next" 존재) 1번 더 읽고, 마지막 페이지니까 그만 읽음
@@ -79,6 +82,7 @@ class PullRequestReadServiceTest {
         Map<String, List<String>> linkHeaderExcludedHeaderMap = Map.of(
                 "content-type", List.of("application/json; charset=utf-8")
         );
+        when(pageResponse.statusCode()).thenReturn(HTTP_OK);
         when(pageResponse.headers()).thenReturn(HttpHeaders.of(linkHeaderExcludedHeaderMap, (k, v) -> true));
         when(pageResponse.body()).thenReturn(FileUtils.readJsonFile("example-response-20-pull-requests.json"));
 
@@ -99,6 +103,7 @@ class PullRequestReadServiceTest {
                 "content-type", List.of("application/json; charset=utf-8"),
                 "link", List.of("<https://example.com/...>; rel=\"next\"")
         );
+        when(page1Response.statusCode()).thenReturn(HTTP_OK);
         when(page1Response.headers()).thenReturn(HttpHeaders.of(nextIncludedHeaderMap, (k, v) -> true));
         when(page1Response.body()).thenReturn(FileUtils.readJsonFile("example-response-30-pull-requests.json"));
 
@@ -107,6 +112,7 @@ class PullRequestReadServiceTest {
                 "content-type", List.of("application/json; charset=utf-8"),
                 "link", List.of("")
         );
+        when(page2Response.statusCode()).thenReturn(HTTP_OK);
         when(page2Response.headers()).thenReturn(HttpHeaders.of(nextExcludedHeaderMap, (k, v) -> true));
         when(page2Response.body()).thenReturn(FileUtils.readJsonFile("example-response-20-pull-requests.json"));
 
