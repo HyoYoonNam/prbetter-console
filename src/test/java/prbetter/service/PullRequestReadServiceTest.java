@@ -1,13 +1,10 @@
 package prbetter.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import prbetter.FileUtils;
 import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
@@ -23,24 +20,6 @@ import java.util.Map;
 
 class PullRequestReadServiceTest {
     private static final int HTTP_OK = 200;
-
-//    @ParameterizedTest
-//    @ValueSource(strings = {
-//            // reference: https://www.ietf.org/rfc/rfc2396.txt
-//            // control
-//            "kot\tlin", "kot\nlin",
-//            // space
-//            "kotlin lotto 8",
-//            // delims
-//            "kot<lin", "kot>lin", "kot%lin", "kot\"lin",
-//            // unwise
-//            "kot{lin", "kot}lin", "kot|lin", "kot\\lin", "kot^lin", "kot[lin", "kot]lin", "kot`lin",
-//    })
-//    void 리포지토리_이름이_uri_형식에_맞지_않으면_예외를_발생한다(String invalidRepositoryName) {
-//        assertThatThrownBy(() -> new PullRequestReadService(HttpClient.newHttpClient()).readAllPages(invalidRepositoryName))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasCauseInstanceOf(URISyntaxException.class);
-//    }
 
     @Test
     void 한_페이지만_있는_경우_한_번만_읽는다() throws IOException, InterruptedException {

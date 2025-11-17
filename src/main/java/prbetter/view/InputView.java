@@ -1,11 +1,10 @@
 package prbetter.view;
 
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
 
 public final class InputView {
     private static final String READ_REPOSITORY_NAME_PROMPT = "리포지토리 이름을 입력해 주세요: ";
     private static final String INPUT_IS_EMPTY = "입력이 비었습니다.";
-    private static final Scanner sc = new Scanner(System.in);
 
     private InputView() {
     }
@@ -22,6 +21,6 @@ public final class InputView {
     }
 
     private static String readLine() {
-        return sc.nextLine().strip();
+        return Console.readLine().strip();
     }
 }
