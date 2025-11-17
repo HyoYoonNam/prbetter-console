@@ -3,10 +3,9 @@ package prbetter.repository;
 import prbetter.domain.PullRequest;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PullRequestRepository {
-    PullRequest save(String mission, PullRequest pullRequest);
+    PullRequest save(String repositoryName, PullRequest pullRequest);
 
-    Optional<List<PullRequest>> findAll(String mission);
+    List<PullRequest> findAll(String repositoryName);
 }
