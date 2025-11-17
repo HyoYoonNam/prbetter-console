@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.cfg.CoercionAction;
 import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
@@ -20,11 +19,13 @@ import java.util.function.Consumer;
 public final class JsonPullRequestMapper {
     private static final Class<PullRequest> PULL_REQUEST_CLASS = PullRequest.class;
     private static final Class<PullRequest[]> PULL_REQUESTS_CLASS = PullRequest[].class;
+
     private static final Consumer<MutableCoercionConfig> strictTypeConfig = (config) -> {
         Arrays.stream(CoercionInputShape.values())
                 .filter(shape -> shape != CoercionInputShape.String)
                 .forEach(shape -> config.setCoercion(shape, CoercionAction.Fail));
     };
+
     private static final ObjectMapper mapper = JsonMapper.builder()
             .addModule(new ParameterNamesModule())
             .withCoercionConfig(String.class, strictTypeConfig)

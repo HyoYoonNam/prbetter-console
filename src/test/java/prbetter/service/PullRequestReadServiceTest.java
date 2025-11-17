@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 class PullRequestReadServiceTest {
-
     private static final int HTTP_OK = 200;
 
     @ParameterizedTest

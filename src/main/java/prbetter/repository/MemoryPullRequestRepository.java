@@ -9,8 +9,6 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
     private static final String REPOSITORY_NO_EXISTS = "저장되지 않은 리포지토리입니다.";
     private static final String INDEX_OUT_OF_BOUNDS = "리포지토리의 최대 인덱스(%d)를 벗어났습니다.";
 
-    private static final Random random = new Random();
-
     private final Map<String, List<PullRequest>> store = new HashMap<>();
 
     @Override
