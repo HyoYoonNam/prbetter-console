@@ -1,5 +1,6 @@
 package prbetter.repository;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 
 import java.util.*;
@@ -9,33 +10,33 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
     private static final String REPOSITORY_NO_EXISTS = "저장되지 않은 리포지토리입니다.";
     private static final String INDEX_OUT_OF_BOUNDS = "리포지토리의 최대 인덱스(%d)를 벗어났습니다.";
 
-    private final Map<String, List<PullRequest>> store = new HashMap<>();
+    private final Map<GitHubRepositoryName, List<PullRequest>> store = new HashMap<>();
 
     @Override
-    public PullRequest save(String repositoryName, PullRequest pullRequest) {
-        if (!store.containsKey(repositoryName)) {
-            store.put(repositoryName, new ArrayList<>());
+    public PullRequest save(GitHubRepositoryName name, PullRequest pullRequest) {
+        if (!store.containsKey(name)) {
+            store.put(name, new ArrayList<>());
         }
 
-        store.get(repositoryName).add(pullRequest);
+        store.get(name).add(pullRequest);
 
         return pullRequest;
     }
 
     @Override
-    public List<PullRequest> save(String repositoryName, List<PullRequest> pullRequests) {
-        if (!store.containsKey(repositoryName)) {
-            store.put(repositoryName, new ArrayList<>());
+    public List<PullRequest> save(GitHubRepositoryName name, List<PullRequest> pullRequests) {
+        if (!store.containsKey(name)) {
+            store.put(name, new ArrayList<>());
         }
 
-        store.get(repositoryName).addAll(pullRequests);
+        store.get(name).addAll(pullRequests);
 
         return pullRequests;
     }
 
     @Override
-    public PullRequest findByIndex(String repositoryName, int index) {
-        List<PullRequest> pullRequests = store.get(repositoryName);
+    public PullRequest findByIndex(GitHubRepositoryName name, int index) {
+        List<PullRequest> pullRequests = store.get(name);
 
         if (pullRequests == null) {
             throw new IllegalArgumentException(REPOSITORY_NO_EXISTS);
@@ -50,17 +51,17 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
     }
 
     @Override
-    public List<PullRequest> findAll(String repositoryName) {
-        return List.copyOf(store.getOrDefault(repositoryName, EMPTY_LIST));
+    public List<PullRequest> findAll(GitHubRepositoryName name) {
+        return List.copyOf(store.getOrDefault(name, EMPTY_LIST));
     }
 
     @Override
-    public int sizeOf(String repositoryName) {
-        return store.getOrDefault(repositoryName, EMPTY_LIST).size();
+    public int sizeOf(GitHubRepositoryName name) {
+        return store.getOrDefault(name, EMPTY_LIST).size();
     }
 
     @Override
-    public boolean has(String repositoryName) {
-        return store.containsKey(repositoryName);
+    public boolean has(GitHubRepositoryName name) {
+        return store.containsKey(name);
     }
 }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.MemoryPullRequestRepository;
 import prbetter.repository.PullRequestRepository;
@@ -14,9 +15,9 @@ class PullRequestRecommendServiceTest {
     @Test
     void 리포지토리에_존재하는_PullRequest중_하나를_추천한다() {
         // given
-        String repositoryName = "kotlin-lotto-8";
+        GitHubRepositoryName name = new GitHubRepositoryName("kotlin-lotto-8");
         PullRequestRepository repository = new MemoryPullRequestRepository();
-        repository.save(repositoryName, List.of(
+        repository.save(name, List.of(
                 new PullRequest("[로또] 남효윤 미션 제출합니다.", "https://example.com"),
                 new PullRequest("[로또] 우테코 미션 제출합니다.", "https://example.com"))
         );
@@ -24,10 +25,10 @@ class PullRequestRecommendServiceTest {
         PullRequestRecommendService recommendService = new PullRequestRecommendService(repository);
 
         // when
-        PullRequest recommended = recommendService.recommendFrom(repositoryName);
+        PullRequest recommended = recommendService.recommendFrom(name);
 
         // then
-        assertThat(repository.findAll(repositoryName)).contains(recommended);
+        assertThat(repository.findAll(name)).contains(recommended);
     }
 
     @Test
@@ -35,7 +36,7 @@ class PullRequestRecommendServiceTest {
         PullRequestRecommendService recommendService =
                 new PullRequestRecommendService(new MemoryPullRequestRepository());
 
-        assertThatThrownBy(() -> recommendService.recommendFrom("sample repository"))
+        assertThatThrownBy(() -> recommendService.recommendFrom(new GitHubRepositoryName("sample repository")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

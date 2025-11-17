@@ -3,6 +3,7 @@ package prbetter.service;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.PullRequestRepository;
 
@@ -14,18 +15,18 @@ class PullRequestLoadServiceTest {
     void PullRequest들을_리포지토리에_로드한다() throws IOException, InterruptedException {
         // given
         PullRequestReadService mockReadService = mock();
-        when(mockReadService.readAllPages(anyString())).thenReturn(createPullRequests());
+        when(mockReadService.readAllPages(any(GitHubRepositoryName.class))).thenReturn(createPullRequests());
         PullRequestRepository mockRepository = mock();
 
         PullRequestLoadService lodeService = new PullRequestLoadService(mockRepository, mockReadService);
 
-        String repositoryName = "java-lotto-8";
+        GitHubRepositoryName name = new GitHubRepositoryName("java-lotto-8");
 
         // when
-        lodeService.load(repositoryName);
+        lodeService.load(name);
 
         // then
-        verify(mockRepository, times(2)).save(eq(repositoryName), any(PullRequest.class));
+        verify(mockRepository, times(2)).save(eq(name), any(PullRequest.class));
     }
 
     private static List<PullRequest> createPullRequests() {

@@ -1,5 +1,6 @@
 package prbetter.service;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.PullRequestRepository;
 
@@ -15,14 +16,14 @@ public final class PullRequestRecommendService {
         this.repository = repository;
     }
 
-    public PullRequest recommendFrom(String repositoryName) {
-        int size = repository.sizeOf(repositoryName);
+    public PullRequest recommendFrom(GitHubRepositoryName name) {
+        int size = repository.sizeOf(name);
         if (size == 0) {
             throw new IllegalArgumentException(PULL_REQUEST_NO_EXISTS);
         }
 
         int randomIndex = random.nextInt(size);
 
-        return repository.findByIndex(repositoryName, randomIndex);
+        return repository.findByIndex(name, randomIndex);
     }
 }

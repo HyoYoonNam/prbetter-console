@@ -1,5 +1,6 @@
 package prbetter.service;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.mapper.JsonPullRequestMapper;
 
@@ -24,12 +25,12 @@ public final class PullRequestReadService {
         this.client = httpClient;
     }
 
-    public List<PullRequest> readAllPages(String repositoryName) throws IOException, InterruptedException {
+    public List<PullRequest> readAllPages(GitHubRepositoryName name) throws IOException, InterruptedException {
         List<PullRequest> result = new ArrayList<>();
         int currentPage = 0;
 
         while (true) {
-            HttpResponse<String> httpResponse = read(repositoryName, ++currentPage);
+            HttpResponse<String> httpResponse = read(name, ++currentPage);
 
             List<PullRequest> pullRequests = JsonPullRequestMapper.mapFromArray(httpResponse.body());
             result.addAll(pullRequests);
@@ -42,13 +43,13 @@ public final class PullRequestReadService {
         return result;
     }
 
-    private HttpResponse<String> read(String repositoryName, int page) throws IOException, InterruptedException {
-        HttpRequest httpRequest = getRequest(repositoryName, page);
+    private HttpResponse<String> read(GitHubRepositoryName name, int page) throws IOException, InterruptedException {
+        HttpRequest httpRequest = getRequest(name, page);
         return getResponse(httpRequest);
     }
 
-    private HttpRequest getRequest(String repositoryName, int page) {
-        URI apiUri = URI.create(API_URI_PREFIX + repositoryName + API_URI_POSTFIX + "?page=" + page);
+    private HttpRequest getRequest(GitHubRepositoryName name, int page) {
+        URI apiUri = URI.create(API_URI_PREFIX + name.value() + API_URI_POSTFIX + "?page=" + page);
         return HttpRequest.newBuilder()
                 .GET()
                 .uri(apiUri)

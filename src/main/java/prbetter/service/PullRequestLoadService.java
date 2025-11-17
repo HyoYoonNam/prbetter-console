@@ -1,5 +1,6 @@
 package prbetter.service;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.PullRequestRepository;
 
@@ -15,9 +16,9 @@ public final class PullRequestLoadService {
         this.readService = readService;
     }
 
-    public void load(String repositoryName) throws IOException, InterruptedException {
-        readService.readAllPages(repositoryName).stream()
+    public void load(GitHubRepositoryName name) throws IOException, InterruptedException {
+        readService.readAllPages(name).stream()
                 .filter(PullRequest::isValidTitle)
-                .forEach(pr -> pullRequestRepository.save(repositoryName, pr));
+                .forEach(pr -> pullRequestRepository.save(name, pr));
     }
 }

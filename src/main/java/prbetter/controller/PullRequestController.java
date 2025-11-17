@@ -1,5 +1,6 @@
 package prbetter.controller;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.PullRequestRepository;
 import prbetter.service.PullRequestLoadService;
@@ -23,23 +24,25 @@ public final class PullRequestController {
     }
 
     public void run() throws IOException, InterruptedException {
-        String repositoryName = getLoadedRepositoryName();
+        GitHubRepositoryName repositoryName = getLoadedRepositoryName();
 
         PullRequest recommended = recommendService.recommendFrom(repositoryName);
 
         OutputView.printRecommendedPullRequest(recommended.title(), recommended.html_url());
     }
 
-    private String getLoadedRepositoryName() throws IOException, InterruptedException {
+    private GitHubRepositoryName getLoadedRepositoryName() throws IOException, InterruptedException {
         while (true) {
-            String repositoryName = InputView.readRepositoryName();
-
-            if (repository.has(repositoryName)) {
-                return repositoryName;
-            }
-
             try {
+                String input = InputView.readRepositoryName();
+                GitHubRepositoryName repositoryName = new GitHubRepositoryName(input);
+
+                if (repository.has(repositoryName)) {
+                    return repositoryName;
+                }
+
                 loadService.load(repositoryName);
+
                 return repositoryName;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());

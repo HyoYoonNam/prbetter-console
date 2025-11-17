@@ -1,19 +1,20 @@
 package prbetter.repository;
 
+import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 
 import java.util.List;
 
 public interface PullRequestRepository {
-    PullRequest save(String repositoryName, PullRequest pullRequest);
+    PullRequest save(GitHubRepositoryName name, PullRequest pullRequest);
 
-    List<PullRequest> save(String repositoryName, List<PullRequest> pullRequests);
+    List<PullRequest> save(GitHubRepositoryName name, List<PullRequest> pullRequests);
 
-    PullRequest findByIndex(String repositoryName, int index);
+    PullRequest findByIndex(GitHubRepositoryName name, int index);
 
-    List<PullRequest> findAll(String repositoryName);
+    List<PullRequest> findAll(GitHubRepositoryName name);
 
-    int sizeOf(String repositoryName);
+    int sizeOf(GitHubRepositoryName name);
 
-    boolean has(String repositoryName);
+    boolean has(GitHubRepositoryName name);
 }
