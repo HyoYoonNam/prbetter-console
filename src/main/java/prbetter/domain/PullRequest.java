@@ -2,6 +2,7 @@ package prbetter.domain;
 
 import java.util.regex.Pattern;
 
+// TODO: 내부에 List<PullRequest>를 가지는 GitHubRepository라는 도메인을 만들어도 좋을 듯.
 public record PullRequest(String title, String html_url) {
     /*
      * '[<미션명>] <이름> 미션 제출합니다.' 패턴과 매칭되는 정규 표현식

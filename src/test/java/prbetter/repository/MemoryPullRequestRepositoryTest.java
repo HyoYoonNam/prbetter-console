@@ -1,15 +1,17 @@
 package prbetter.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import prbetter.domain.PullRequest;
 
 import java.util.List;
 
 class MemoryPullRequestRepositoryTest {
-    MemoryPullRequestRepository repository;
+    PullRequestRepository repository;
 
     @BeforeEach
     void setUp() {
@@ -39,5 +41,45 @@ class MemoryPullRequestRepositoryTest {
         List<PullRequest> foundPullRequests = repository.findAll("java-lotto-8");
 
         assertThat(foundPullRequests).isEmpty();
+    }
+
+    @Nested
+    class 인덱스_기반_검색 {
+        @Test
+        void 검색_성공() {
+            String repositoryName = "kotlin-lotto-8";
+            List<PullRequest> pullRequestsToSave = create2PullRequests();
+
+            repository.save(repositoryName, pullRequestsToSave);
+
+            assertThat(pullRequestsToSave).contains(
+                    repository.findByIndex(repositoryName, 0),
+                    repository.findByIndex(repositoryName, 1)
+            );
+        }
+
+        @Test
+        void 범위를_벗어난_인덱스를_입력하면_예외를_발생한다() {
+            String repositoryName = "kotlin-lotto-8";
+            List<PullRequest> pullRequestsToSave = create2PullRequests();
+
+            repository.save(repositoryName, pullRequestsToSave);
+
+            assertThatThrownBy(() -> repository.findByIndex(repositoryName, 2))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 저장되지_않은_리포지토리에서_검색하면_예외를_발생한다() {
+            assertThatThrownBy(() -> repository.findByIndex("sample-repository", 1))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        private static List<PullRequest> create2PullRequests() {
+            return List.of(
+                    new PullRequest("[로또] 남효윤 미션 제출합니다.", "https://example.com"),
+                    new PullRequest("[로또] 우테코 미션 제출합니다.", "https://example.com")
+            );
+        }
     }
 }
