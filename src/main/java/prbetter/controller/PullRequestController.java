@@ -25,9 +25,9 @@ public final class PullRequestController {
     public void run() throws IOException, InterruptedException {
         String repositoryName = getLoadedRepositoryName();
 
-        PullRequest recommanded = recommendService.recommandFrom(repositoryName);
+        PullRequest recommended = recommendService.recommendFrom(repositoryName);
 
-        OutputView.printRecommendedPullRequest(recommanded.title(), recommanded.html_url());
+        OutputView.printRecommendedPullRequest(recommended.title(), recommended.html_url());
     }
 
     private String getLoadedRepositoryName() throws IOException, InterruptedException {

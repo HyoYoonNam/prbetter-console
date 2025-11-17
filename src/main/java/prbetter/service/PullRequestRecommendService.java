@@ -15,7 +15,7 @@ public final class PullRequestRecommendService {
         this.repository = repository;
     }
 
-    public PullRequest recommandFrom(String repositoryName) {
+    public PullRequest recommendFrom(String repositoryName) {
         int size = repository.sizeOf(repositoryName);
         if (size == 0) {
             throw new IllegalArgumentException(PULL_REQUEST_NO_EXISTS);

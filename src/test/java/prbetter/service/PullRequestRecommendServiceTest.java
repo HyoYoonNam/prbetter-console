@@ -21,10 +21,10 @@ class PullRequestRecommendServiceTest {
                 new PullRequest("[로또] 우테코 미션 제출합니다.", "https://example.com"))
         );
 
-        PullRequestRecommendService recommandService = new PullRequestRecommendService(repository);
+        PullRequestRecommendService recommendService = new PullRequestRecommendService(repository);
 
         // when
-        PullRequest recommended = recommandService.recommandFrom(repositoryName);
+        PullRequest recommended = recommendService.recommendFrom(repositoryName);
 
         // then
         assertThat(repository.findAll(repositoryName)).contains(recommended);
@@ -32,10 +32,10 @@ class PullRequestRecommendServiceTest {
 
     @Test
     void 추천할_PullRequest가_존재하지_않으면_예외를_발생한다() {
-        PullRequestRecommendService recommandService =
+        PullRequestRecommendService recommendService =
                 new PullRequestRecommendService(new MemoryPullRequestRepository());
 
-        assertThatThrownBy(() -> recommandService.recommandFrom("sample repository"))
+        assertThatThrownBy(() -> recommendService.recommendFrom("sample repository"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
