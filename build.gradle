@@ -1,5 +1,21 @@
 plugins {
     id 'java'
+    id 'com.adarshr.test-logger' version '4.0.0'
+}
+
+// 모든 의존성을 포함한 fat jar을 만들기 위한 설정
+jar {
+    manifest {
+        attributes 'Main-Class': 'prbetter.Application'
+    }
+    enabled=true
+    archiveClassifier = ''
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 group = 'console.prbetter'
@@ -17,11 +33,11 @@ repositories {
 }
 
 dependencies {
-    // junit
+    // junit: mission-utils에 포함
 //    testImplementation platform('org.junit:junit-bom:5.10.0')
 //    testImplementation 'org.junit.jupiter:junit-jupiter'
 
-    // assertj
+    // assertj: mission-utils에 포함
 //    testImplementation 'org.assertj:assertj-core:3.6.1'
 
     // jackson
@@ -37,6 +53,7 @@ dependencies {
     // mockito
     testImplementation "org.mockito:mockito-core:5.+"
 
+    // mission-utils
     implementation('com.github.woowacourse-projects:mission-utils:1.2.0') {
         exclude group: 'org.mockito'
     }
@@ -44,4 +61,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testlogger {
+        theme 'mocha'
+    }
 }
