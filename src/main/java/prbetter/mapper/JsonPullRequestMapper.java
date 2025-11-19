@@ -16,6 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * 이 클래스는 json 문자열을 {@link PullRequest} 객체로 매핑하는 책임을 가진다.
+ *
+ * <p>이 클래스는 인스턴스 생성과 상속이 불가능한 정적 유틸 클래스이다.
+ */
+
 public final class JsonPullRequestMapper {
     private static final Class<PullRequest> PULL_REQUEST_CLASS = PullRequest.class;
     private static final Class<PullRequest[]> PULL_REQUESTS_CLASS = PullRequest[].class;
@@ -36,6 +42,13 @@ public final class JsonPullRequestMapper {
     private JsonPullRequestMapper() {
     }
 
+    // TODO: mapFromObject랑 mapFromArray 중복 해소하기
+
+    /**
+     * 단일 json 객체를 받아 {@link PullRequest}로 매핑한다.
+     *
+     * @throws JsonDeserializeException 매핑 중 오류가 생기면 발생한다.
+     */
     public static PullRequest mapFromObject(String jsonString) {
         try {
             return mapper.readValue(jsonString, PULL_REQUEST_CLASS);
@@ -48,6 +61,11 @@ public final class JsonPullRequestMapper {
         }
     }
 
+    /**
+     * json 배열을 받아 {@link PullRequest}로 매핑한다.
+     *
+     * @throws JsonDeserializeException 매핑 중 오류가 생기면 발생한다.
+     */
     public static List<PullRequest> mapFromArray(String jsonString) {
         try {
             return List.of(mapper.readValue(jsonString, PULL_REQUESTS_CLASS));

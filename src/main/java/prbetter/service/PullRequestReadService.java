@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 이 클래스는 GitHub API를 호출하여 특정 리포지토리의 Pull request 목록을 읽어 오는 책임을 가진다.
+ * 이 클래스는 GitHub API를 호출하여 특정 깃허브 리포지토리의 Pull request 목록을 읽어 오는 책임을 가진다.
  *
  * <p>이 클래스는 {@code final}이므로 상속이 불가하다.
  */

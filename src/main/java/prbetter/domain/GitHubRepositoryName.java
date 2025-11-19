@@ -2,6 +2,14 @@ package prbetter.domain;
 
 import java.util.regex.Pattern;
 
+/**
+ * 이 클래스는 GitHub 리포지토리의 이름을 가지는 Value object이다.
+ *
+ * <p> 이 클래스는 {@code record}로 선언되었으므로 불변임을 보장한다.
+ *
+ * @param value GitHub 리포지토리 이름
+ */
+
 public record GitHubRepositoryName(String value) {
     /*
      * GitHub에서 Create a new repository를 선택하고, Repository name에 'ㄱ' '@' 등의 규칙을 벗어나는 문자를 입력하면 다음 메시지가 보인다.
@@ -10,6 +18,7 @@ public record GitHubRepositoryName(String value) {
      */
     private static final Pattern NAMING_RULE_PATTERN = Pattern.compile("[A-Za-z0-9.\\-_]+");
 
+    /** @throws IllegalArgumentException GitHub 리포지토리 명명 규칙을 위반하면 발생한다. */
     public GitHubRepositoryName {
         if (!NAMING_RULE_PATTERN.matcher(value).matches()) {
             throw new IllegalArgumentException(

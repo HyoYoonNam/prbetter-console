@@ -9,6 +9,10 @@ import prbetter.service.PullRequestRecommendService;
 
 import java.net.http.HttpClient;
 
+/**
+ * 이 클래스는 애플리케이션 전체의 의존성 주입과 객체 생성에 대한 책임을 가진다.
+ */
+
 public class AppConfig {
     private final MemoryPullRequestRepository repository = new MemoryPullRequestRepository();
 

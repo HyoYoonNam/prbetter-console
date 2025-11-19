@@ -8,6 +8,14 @@ import prbetter.service.PullRequestRecommendService;
 import prbetter.view.InputView;
 import prbetter.view.OutputView;
 
+/**
+ * 이 클래스는 프로그램의 전체 흐름을 제어하는 책임을 가진다.
+ *
+ * <p>전체 흐름은 'GitHub 리포지토리 이름 입력받기' -> '리포지토리에 있는 Pull request 중 하나 고르기' -> '고른 Pull request를 추천'으로 진행된다.
+ *
+ * <p>이 클래스는 {@code final}이므로 상속이 불가하다.
+ */
+
 public final class PullRequestController {
     private final PullRequestRepository repository;
     private final PullRequestLoadService loadService;
@@ -21,6 +29,7 @@ public final class PullRequestController {
         this.recommendService = recommendService;
     }
 
+    /** 프로그램을 시작한다. */
     public void run() {
         GitHubRepositoryName repositoryName = getLoadedRepositoryName();
 

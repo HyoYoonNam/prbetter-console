@@ -5,6 +5,14 @@ import prbetter.domain.PullRequest;
 
 import java.util.*;
 
+/**
+ * {@link PullRequestRepository}의 메모리 기반 구현체이다.
+ *
+ * <p>데이터를 메모리에 저장하므로, 프로그램 종료 시 데이터는 초기화된다.
+ *
+ * <p>이 클래스는 {@code final}이므로 상속이 불가하다.
+ */
+
 public final class MemoryPullRequestRepository implements PullRequestRepository {
     private static final List<PullRequest> EMPTY_LIST = Collections.emptyList();
     private static final String REPOSITORY_NO_EXISTS = "저장되지 않은 리포지토리입니다.";
@@ -34,10 +42,16 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
         return pullRequests;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws IllegalArgumentException 저장되지 않은 리포지토리거나, 인덱스 범위를 벗어난 경우 발생한다.
+     */
     @Override
     public PullRequest findByIndex(GitHubRepositoryName name, int index) {
         List<PullRequest> pullRequests = store.get(name);
 
+        // TODO: null 대신 has() 활용으로 바꾸기
         if (pullRequests == null) {
             throw new IllegalArgumentException(REPOSITORY_NO_EXISTS);
         }
