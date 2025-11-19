@@ -35,7 +35,7 @@ public final class PullRequestController {
 
         PullRequest recommended = recommendService.recommendFrom(repositoryName);
 
-        OutputView.printRecommendedPullRequest(recommended.title(), recommended.html_url());
+        OutputView.printRecommendedPullRequest(recommended.title(), recommended.htmlUrl());
     }
 
     private GitHubRepositoryName getLoadedRepositoryName() {

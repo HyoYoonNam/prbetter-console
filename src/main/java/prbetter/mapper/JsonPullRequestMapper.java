@@ -1,6 +1,7 @@
 package prbetter.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -24,7 +25,7 @@ import java.util.function.Consumer;
 
 public final class JsonPullRequestMapper {
     private static final Class<PullRequest> PULL_REQUEST_CLASS = PullRequest.class;
-    private static final Class<PullRequest[]> PULL_REQUESTS_CLASS = PullRequest[].class;
+    private static final Class<PullRequest[]> PULL_REQUEST_ARRAY_CLASS = PullRequest[].class;
 
     private static final Consumer<MutableCoercionConfig> strictTypeConfig = (config) -> {
         Arrays.stream(CoercionInputShape.values())
@@ -42,14 +43,16 @@ public final class JsonPullRequestMapper {
     private JsonPullRequestMapper() {
     }
 
-    // TODO: mapFromObject랑 mapFromArray 중복 해소하기
-
     /**
      * 단일 json 객체를 받아 {@link PullRequest}로 매핑한다.
      *
      * @throws JsonDeserializeException 매핑 중 오류가 생기면 발생한다.
      */
     public static PullRequest mapFromObject(String jsonString) {
+        if (!isJsonObject(jsonString)) {
+            throw new IllegalArgumentException("json 객체가 아닙니다.");
+        }
+
         try {
             return mapper.readValue(jsonString, PULL_REQUEST_CLASS);
         } catch (StreamReadException e) {
@@ -67,8 +70,12 @@ public final class JsonPullRequestMapper {
      * @throws JsonDeserializeException 매핑 중 오류가 생기면 발생한다.
      */
     public static List<PullRequest> mapFromArray(String jsonString) {
+        if (!isJsonArray(jsonString)) {
+            throw new IllegalArgumentException("json 배열이 아닙니다.");
+        }
+
         try {
-            return List.of(mapper.readValue(jsonString, PULL_REQUESTS_CLASS));
+            return List.of(mapper.readValue(jsonString, PULL_REQUEST_ARRAY_CLASS));
         } catch (StreamReadException e) {
             throw new JsonDeserializeException("json 형식에 맞지 않는 입력입니다.", e);
         } catch (DatabindException e) {
@@ -76,5 +83,13 @@ public final class JsonPullRequestMapper {
         } catch (JsonProcessingException e) { // api 문서상으로는 위 두 예외만 명시되어 있지만, 구현상으로는 해당 예외도 던지기 때문에 잡을 필요가 있다.
             throw new JsonDeserializeException("json 처리 도중 예외가 발생했습니다.", e);
         }
+    }
+
+    private static boolean isJsonObject(String jsonString) {
+        return jsonString.startsWith(JsonToken.START_OBJECT.asString());
+    }
+
+    private static boolean isJsonArray(String jsonString) {
+        return jsonString.startsWith(JsonToken.START_ARRAY.asString());
     }
 }

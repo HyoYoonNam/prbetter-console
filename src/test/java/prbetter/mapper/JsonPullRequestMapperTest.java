@@ -21,7 +21,7 @@ class JsonPullRequestMapperTest {
         PullRequest mappedPullRequest = JsonPullRequestMapper.mapFromObject(jsonString);
 
         assertThat(mappedPullRequest.title()).isEqualTo("Amazing new feature");
-        assertThat(mappedPullRequest.html_url()).isEqualTo("https://github.com/octocat/Hello-World/pull/1347");
+        assertThat(mappedPullRequest.htmlUrl()).isEqualTo("https://github.com/octocat/Hello-World/pull/1347");
     }
 
     @ParameterizedTest
@@ -53,7 +53,7 @@ class JsonPullRequestMapperTest {
         PullRequest mappedPullRequest = JsonPullRequestMapper.mapFromObject(json);
 
         assertThat(mappedPullRequest.title()).isEqualTo("sample title");
-        assertThat(mappedPullRequest.html_url()).isEqualTo("https://sample.com");
+        assertThat(mappedPullRequest.htmlUrl()).isEqualTo("https://sample.com");
     }
 
     @ParameterizedTest

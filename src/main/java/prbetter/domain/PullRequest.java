@@ -1,9 +1,10 @@
 package prbetter.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.regex.Pattern;
 
-// TODO: 내부에 List<PullRequest>를 가지는 GitHubRepository라는 도메인을 만들어도 좋을 듯.
-// TODO: html_url을 htmlUrl로 바꿔야됨. json 설정 건드려야 될 듯
+// TODO: 내부에 List<PullRequest>를 가지는 GitHubRepository라는 도메인을 만들어도 좋을 듯. 일단 작동에 문제없으니 최대한 미루기
 
 /**
  * 이 클래스는 Pull request의 제목과 링크를 가지는 Value object이다.
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
  * <p> 이 클래스는 {@code record}로 선언되었으므로 불변임을 보장한다.
  */
 
-public record PullRequest(String title, String html_url) {
+public record PullRequest(String title, @JsonProperty("html_url") String htmlUrl) {
     /*
      * '[<미션명>] <이름> 미션 제출합니다.' 패턴과 매칭되는 정규 표현식
      * '[로또] 남효윤 미션 제출합니다.'

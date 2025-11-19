@@ -49,12 +49,11 @@ public final class MemoryPullRequestRepository implements PullRequestRepository 
      */
     @Override
     public PullRequest findByIndex(GitHubRepositoryName name, int index) {
-        List<PullRequest> pullRequests = store.get(name);
-
-        // TODO: null 대신 has() 활용으로 바꾸기
-        if (pullRequests == null) {
+        if (!has(name)) {
             throw new IllegalArgumentException(REPOSITORY_NO_EXISTS);
         }
+
+        List<PullRequest> pullRequests = store.get(name);
 
         int maxIndex = pullRequests.size() - 1;
         if (index < 0 || index > maxIndex) {
