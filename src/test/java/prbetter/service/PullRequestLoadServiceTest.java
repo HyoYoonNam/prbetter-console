@@ -7,12 +7,11 @@ import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 import prbetter.repository.PullRequestRepository;
 
-import java.io.IOException;
 import java.util.List;
 
 class PullRequestLoadServiceTest {
     @Test
-    void PullRequest들을_리포지토리에_로드한다() throws IOException, InterruptedException {
+    void PullRequest들을_리포지토리에_로드한다() {
         // given
         PullRequestReadService mockReadService = mock();
         when(mockReadService.readAllPages(any(GitHubRepositoryName.class))).thenReturn(createPullRequests());

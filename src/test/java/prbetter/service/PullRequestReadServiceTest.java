@@ -10,7 +10,6 @@ import prbetter.domain.GitHubRepositoryName;
 import prbetter.domain.PullRequest;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
@@ -38,7 +37,7 @@ class PullRequestReadServiceTest {
     }
 
     @Test
-    void 다음_페이지가_있는_경우_계속_읽는다() throws IOException, InterruptedException, URISyntaxException {
+    void 다음_페이지가_있는_경우_계속_읽는다() throws IOException, InterruptedException {
         // given
         HttpClient mockClient = createMockClientResponse2Pages();
         PullRequestReadService readService = new PullRequestReadService(mockClient);

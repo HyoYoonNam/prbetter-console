@@ -8,8 +8,6 @@ import prbetter.service.PullRequestRecommendService;
 import prbetter.view.InputView;
 import prbetter.view.OutputView;
 
-import java.io.IOException;
-
 public final class PullRequestController {
     private final PullRequestRepository repository;
     private final PullRequestLoadService loadService;
@@ -23,7 +21,7 @@ public final class PullRequestController {
         this.recommendService = recommendService;
     }
 
-    public void run() throws IOException, InterruptedException {
+    public void run() {
         GitHubRepositoryName repositoryName = getLoadedRepositoryName();
 
         PullRequest recommended = recommendService.recommendFrom(repositoryName);
@@ -31,7 +29,7 @@ public final class PullRequestController {
         OutputView.printRecommendedPullRequest(recommended.title(), recommended.html_url());
     }
 
-    private GitHubRepositoryName getLoadedRepositoryName() throws IOException, InterruptedException {
+    private GitHubRepositoryName getLoadedRepositoryName() {
         while (true) {
             try {
                 String input = InputView.readRepositoryName();
