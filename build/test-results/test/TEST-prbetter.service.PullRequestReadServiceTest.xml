@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.service.PullRequestReadServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.841Z" hostname="nhyoonui-MacBookPro.local" time="0.064">
+  <properties/>
+  <testcase name="한_페이지만_있는_경우_한_번만_읽는다()" classname="prbetter.service.PullRequestReadServiceTest" time="0.027"/>
+  <testcase name="다음_페이지가_있는_경우_계속_읽는다()" classname="prbetter.service.PullRequestReadServiceTest" time="0.036"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

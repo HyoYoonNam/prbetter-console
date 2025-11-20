@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.repository.MemoryPullRequestRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.752Z" hostname="nhyoonui-MacBookPro.local" time="0.006">
+  <properties/>
+  <testcase name="저장된_적이_없는_리포지토리_조회시_빈_리스트를_리턴()" classname="prbetter.repository.MemoryPullRequestRepositoryTest" time="0.001"/>
+  <testcase name="저장과_조회_정상_흐름()" classname="prbetter.repository.MemoryPullRequestRepositoryTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.domain.GitHubRepositoryNameTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.631Z" hostname="nhyoonui-MacBookPro.local" time="0.011">
+  <properties/>
+  <testcase name="리포지토리_이름_규칙을_위반하면_예외를_발생한다()" classname="prbetter.domain.GitHubRepositoryNameTest" time="0.01"/>
+  <testcase name="리포지토리_이름_규칙을_준수하면_객체를_정상_생성한다()" classname="prbetter.domain.GitHubRepositoryNameTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.mapper.JsonPullRequestMapperTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.646Z" hostname="nhyoonui-MacBookPro.local" time="0.104">
+  <properties/>
+  <testcase name="PullRequest_객체에_있는_프로퍼티가_json에_없으면_예외를_발생한다()" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.004"/>
+  <testcase name="[1] {&quot;html_url&quot;: &quot;https://sample.com&quot;, &quot;title&quot;: &quot;sample title&quot;" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.009"/>
+  <testcase name="[2] {&quot;html_url&quot; &quot;https://sample.com&quot;, &quot;title&quot; &quot;sample title&quot;}" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.001"/>
+  <testcase name="[3] {&quot;html_url&quot;: &quot;https://sample.com&quot; &quot;title&quot;: &quot;sample title&quot;}" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.001"/>
+  <testcase name="[1] {&quot;html_url&quot;: &quot;https://sample.com&quot;, &quot;title&quot;: 1234}" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.001"/>
+  <testcase name="[2] {&quot;html_url&quot;: &quot;https://sample.com&quot;, &quot;title&quot;: 12.34}" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.002"/>
+  <testcase name="json에_있는_프로퍼티가_PullRequest_객체에_없는_경우는_무시하고_진행한다()" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.001"/>
+  <testcase name="여러_개의_json_객체가_있는_json_배열을_매핑한다()" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.03"/>
+  <testcase name="json_문자열을_PullRequest_객체로_매핑한다()" classname="prbetter.mapper.JsonPullRequestMapperTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

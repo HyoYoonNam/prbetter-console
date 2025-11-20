@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.repository.MemoryPullRequestRepositoryTest$인덱스_기반_검색" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.760Z" hostname="nhyoonui-MacBookPro.local" time="0.005">
+  <properties/>
+  <testcase name="검색_성공()" classname="prbetter.repository.MemoryPullRequestRepositoryTest$인덱스_기반_검색" time="0.001"/>
+  <testcase name="범위를_벗어난_인덱스를_입력하면_예외를_발생한다()" classname="prbetter.repository.MemoryPullRequestRepositoryTest$인덱스_기반_검색" time="0.001"/>
+  <testcase name="저장되지_않은_리포지토리에서_검색하면_예외를_발생한다()" classname="prbetter.repository.MemoryPullRequestRepositoryTest$인덱스_기반_검색" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

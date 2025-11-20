@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.service.PullRequestRecommendServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:58.907Z" hostname="nhyoonui-MacBookPro.local" time="0.002">
+  <properties/>
+  <testcase name="추천할_PullRequest가_존재하지_않으면_예외를_발생한다()" classname="prbetter.service.PullRequestRecommendServiceTest" time="0.001"/>
+  <testcase name="리포지토리에_존재하는_PullRequest중_하나를_추천한다()" classname="prbetter.service.PullRequestRecommendServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

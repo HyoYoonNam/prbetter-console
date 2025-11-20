@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="prbetter.ApplicationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-20T07:21:56.201Z" hostname="nhyoonui-MacBookPro.local" time="2.425">
+  <properties/>
+  <testcase name="규칙을_위반하는_리포지토리_이름을_입력하면_에러_메시지를_출력한다()" classname="prbetter.ApplicationTest" time="1.67"/>
+  <testcase name="정상_흐름_테스트()" classname="prbetter.ApplicationTest" time="0.753"/>
+  <system-out><![CDATA[리포지토리 이름을 입력해 주세요: [ERROR] kotlin lotto 8: 깃허브 리포지토리 이름은 ASCII 문자, 숫자, '.', '-', '_' 중 하나여야 합니다.
+리포지토리 이름을 입력해 주세요:
+리포지토리 이름을 입력해 주세요: 이 PR을 리뷰해 보세요!
+제목: [로또] 채승우 미션 제출합니다.
+링크: https://github.com/woowacourse-precourse/kotlin-lotto-8/pull/20
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/rudevico/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.7/fbf3d6d649ed37fc9e9c59480a05be0a26e3c2da/byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
