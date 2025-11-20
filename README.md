@@ -19,8 +19,7 @@
 [![WoowaCourse](https://img.shields.io/badge/Project_For-WoowaCourse_Pre--course-00C854?style=flat-square&logo=woowabrothers&logoColor=white)](https://woowacourse.github.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 ![Last Commit](https://img.shields.io/github/last-commit/hyoyoonnam/prbetter-console?style=flat-square&color=important)
-
-#### TODO: javadoc 링크 뱃지 달기
+[![Javadoc](https://img.shields.io/badge/Javadoc-reference-green?style=flat-square)](https://hyoyoonnam.github.io/prbetter-console/)
 
 ---
 **prbetter는 특정 리포지토리에 있는 Pull request 중 하나를 랜덤으로 추천해 주는 콘솔 애플리케이션입니다.**
