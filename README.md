@@ -13,7 +13,7 @@
 [![JUnit5](https://img.shields.io/badge/Test-JUnit5-25A162?style=flat-square&logo=junit5&logoColor=white)](https://junit.org/junit5/)
 [![Mockito](https://img.shields.io/badge/Test-Mockito-81B518?style=flat-square&logo=mockito&logoColor=white)](https://site.mockito.org/)
 [![NsTest](https://img.shields.io/badge/Test_Utils-NsTest-00C854?style=flat-square&logo=woowabrothers&logoColor=white)](https://github.com/woowacourse-projects/mission-utils)
-![Coverage](https://img.shields.io/badge/Coverage-80%25-green?style=flat-square)
+[![Coverage](https://img.shields.io/badge/Coverage-80%25-green?style=flat-square)](https://htmlpreview.github.io/?https://github.com/HyoYoonNam/prbetter-console/blob/main/htmlReport/index.html)
 
 ### Meta
 [![WoowaCourse](https://img.shields.io/badge/Project_For-WoowaCourse_Pre--course-00C854?style=flat-square&logo=woowabrothers&logoColor=white)](https://woowacourse.github.io/)
@@ -125,7 +125,7 @@ SUCCESS: Executed 23 tests in 1.8s
 
 ![test-passed-result](assets/test-passed-result.png)
 
-#### TODO: 전체 코드 커버리지 html 연결하기
+전체 테스트 커버리지는 [여기](https://htmlpreview.github.io/?https://github.com/HyoYoonNam/prbetter-console/blob/main/htmlReport/index.html)에서 확인하실 수 있습니다.
 ![test-coverage](assets/test-coverage.png)
 
 ## 💬 더 많은 정보
