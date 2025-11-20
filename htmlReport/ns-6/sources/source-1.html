@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PullRequestLoadService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">prbetter.service</a>
+</div>
+
+<h1>Coverage Summary for Class: PullRequestLoadService (prbetter.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PullRequestLoadService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package prbetter.service;
+&nbsp;
+&nbsp;import prbetter.domain.GitHubRepositoryName;
+&nbsp;import prbetter.domain.PullRequest;
+&nbsp;import prbetter.repository.PullRequestRepository;
+&nbsp;
+&nbsp;/**
+&nbsp; * 이 클래스는 특정 깃허브 리포지토리의 Pull request 목록을 읽어 와서 내부 리포지토리에 로드할 책임을 가진다.
+&nbsp; *
+&nbsp; * &lt;p&gt;이 클래스는 {@code final}이므로 상속이 불가하다.
+&nbsp; */
+&nbsp;
+&nbsp;public final class PullRequestLoadService {
+&nbsp;    private final PullRequestRepository pullRequestRepository;
+&nbsp;    private final PullRequestReadService readService;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * {@code PullRequestLoadService} 인스턴스를 생성한다.
+&nbsp;     *
+&nbsp;     * @param pullRequestRepository 읽어 온 Pull request 목록을 로드할 내부 리포지토리
+&nbsp;     * @param readService Pull request 목록을 읽어 올 수 있는 객체
+&nbsp;     */
+&nbsp;    public PullRequestLoadService(PullRequestRepository pullRequestRepository,
+<b class="fc">&nbsp;                                  PullRequestReadService readService) {</b>
+<b class="fc">&nbsp;        this.pullRequestRepository = pullRequestRepository;</b>
+<b class="fc">&nbsp;        this.readService = readService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 지정된 깃허브 리포지토리의 모든 Pull request를 조회한 후, 유효한 제목을 가진 PR만 선별하여 저장한다.
+&nbsp;     *
+&nbsp;     * @param name Pull request를 로드할 대상 깃허브 리포지토리의 이름
+&nbsp;     * @throws IllegalStateException API 요청 중 오류가 생긴 경우 발생한다.
+&nbsp;     * @throws IllegalArgumentException {@code @param name}에 해당하는 리포지토리가 존재하지 않는 경우 발생한다.
+&nbsp;     * @see PullRequest#isValidTitle()
+&nbsp;     */
+&nbsp;    public void load(GitHubRepositoryName name) {
+<b class="fc">&nbsp;        readService.readAllPages(name).stream()</b>
+<b class="fc">&nbsp;                .filter(PullRequest::isValidTitle)</b>
+<b class="fc">&nbsp;                .forEach(pr -&gt; pullRequestRepository.save(name, pr));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-20 16:23</div>
+</div>
+</body>
+</html>

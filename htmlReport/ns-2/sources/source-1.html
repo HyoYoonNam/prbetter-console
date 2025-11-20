@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PullRequestController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">prbetter.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PullRequestController (prbetter.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PullRequestController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package prbetter.controller;
+&nbsp;
+&nbsp;import prbetter.domain.GitHubRepositoryName;
+&nbsp;import prbetter.domain.PullRequest;
+&nbsp;import prbetter.repository.PullRequestRepository;
+&nbsp;import prbetter.service.PullRequestLoadService;
+&nbsp;import prbetter.service.PullRequestRecommendService;
+&nbsp;import prbetter.view.InputView;
+&nbsp;import prbetter.view.OutputView;
+&nbsp;
+&nbsp;/**
+&nbsp; * 이 클래스는 프로그램의 전체 흐름을 제어하는 책임을 가진다.
+&nbsp; *
+&nbsp; * &lt;p&gt;전체 흐름은 &#39;GitHub 리포지토리 이름 입력받기&#39; -&gt; &#39;리포지토리에 있는 Pull request 중 하나 고르기&#39; -&gt; &#39;고른 Pull request를 추천&#39;으로 진행된다.
+&nbsp; *
+&nbsp; * &lt;p&gt;이 클래스는 {@code final}이므로 상속이 불가하다.
+&nbsp; */
+&nbsp;
+&nbsp;public final class PullRequestController {
+&nbsp;    private final PullRequestRepository repository;
+&nbsp;    private final PullRequestLoadService loadService;
+&nbsp;    private final PullRequestRecommendService recommendService;
+&nbsp;
+&nbsp;    public PullRequestController(PullRequestRepository repository,
+&nbsp;                                 PullRequestLoadService loadService,
+<b class="fc">&nbsp;                                 PullRequestRecommendService recommendService) {</b>
+<b class="fc">&nbsp;        this.repository = repository;</b>
+<b class="fc">&nbsp;        this.loadService = loadService;</b>
+<b class="fc">&nbsp;        this.recommendService = recommendService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** 프로그램을 시작한다. */
+&nbsp;    public void run() {
+<b class="fc">&nbsp;        GitHubRepositoryName repositoryName = getLoadedRepositoryName();</b>
+&nbsp;
+<b class="fc">&nbsp;        PullRequest recommended = recommendService.recommendFrom(repositoryName);</b>
+&nbsp;
+<b class="fc">&nbsp;        OutputView.printRecommendedPullRequest(recommended.title(), recommended.htmlUrl());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private GitHubRepositoryName getLoadedRepositoryName() {
+&nbsp;        while (true) {
+&nbsp;            try {
+<b class="fc">&nbsp;                String input = InputView.readRepositoryName();</b>
+<b class="fc">&nbsp;                GitHubRepositoryName repositoryName = new GitHubRepositoryName(input);</b>
+&nbsp;
+<b class="pc">&nbsp;                if (repository.has(repositoryName)) {</b>
+<b class="nc">&nbsp;                    return repositoryName;</b>
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;                loadService.load(repositoryName);</b>
+&nbsp;
+<b class="fc">&nbsp;                return repositoryName;</b>
+&nbsp;            } catch (IllegalArgumentException e) {
+<b class="fc">&nbsp;                OutputView.printError(e.getMessage());</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-20 16:23</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > OutputView</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">prbetter.view</a>
+</div>
+
+<h1>Coverage Summary for Class: OutputView (prbetter.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OutputView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package prbetter.view;
+&nbsp;
+&nbsp;/**
+&nbsp; * 이 클래스는 프로그램의 출력을 담당한다.
+&nbsp; *
+&nbsp; * &lt;p&gt;이 클래스는 인스턴스 생성과 상속이 불가능한 정적 유틸 클래스이다.
+&nbsp; */
+&nbsp;
+&nbsp;public final class OutputView {
+&nbsp;    private static final String ERROR_PREFIX = &quot;[ERROR] &quot;;
+&nbsp;
+&nbsp;    private OutputView() {
+&nbsp;    }
+&nbsp;
+&nbsp;    /** 추천할 Pull request에 대한 제목과 url 링크를 입력받아 출력한다. */
+&nbsp;    public static void printRecommendedPullRequest(String title, String htmlUrl) {
+<b class="fc">&nbsp;        System.out.println(&quot;이 PR을 리뷰해 보세요!&quot;);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;제목: &quot; + title);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;링크: &quot; + htmlUrl);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** 입력받은 에러 메시지에 정해진 prefix를 붙여 출력한다. */
+&nbsp;    public static void printError(String message) {
+<b class="fc">&nbsp;        System.out.println(ERROR_PREFIX + message);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-20 16:23</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > AppConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">prbetter</a>
+</div>
+
+<h1>Coverage Summary for Class: AppConfig (prbetter)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AppConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package prbetter;
+&nbsp;
+&nbsp;import prbetter.controller.PullRequestController;
+&nbsp;import prbetter.repository.MemoryPullRequestRepository;
+&nbsp;import prbetter.repository.PullRequestRepository;
+&nbsp;import prbetter.service.PullRequestLoadService;
+&nbsp;import prbetter.service.PullRequestReadService;
+&nbsp;import prbetter.service.PullRequestRecommendService;
+&nbsp;
+&nbsp;import java.net.http.HttpClient;
+&nbsp;
+&nbsp;/**
+&nbsp; * 이 클래스는 애플리케이션 전체의 의존성 주입과 객체 생성에 대한 책임을 가진다.
+&nbsp; */
+&nbsp;
+<b class="fc">&nbsp;public class AppConfig {</b>
+<b class="fc">&nbsp;    private final MemoryPullRequestRepository repository = new MemoryPullRequestRepository();</b>
+&nbsp;
+&nbsp;    public PullRequestController controller() {
+<b class="fc">&nbsp;        return new PullRequestController(repository(), loadService(), recommendService());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PullRequestRecommendService recommendService() {
+<b class="fc">&nbsp;        return new PullRequestRecommendService(repository);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PullRequestLoadService loadService() {
+<b class="fc">&nbsp;        return new PullRequestLoadService(repository, readService());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PullRequestReadService readService() {
+<b class="nc">&nbsp;        return new PullRequestReadService(HttpClient.newHttpClient());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PullRequestRepository repository() {
+<b class="fc">&nbsp;        return repository;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-20 16:23</div>
+</div>
+</body>
+</html>

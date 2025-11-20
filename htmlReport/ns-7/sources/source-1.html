@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > InputView</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">prbetter.view</a>
+</div>
+
+<h1>Coverage Summary for Class: InputView (prbetter.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InputView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package prbetter.view;
+&nbsp;
+&nbsp;import camp.nextstep.edu.missionutils.Console;
+&nbsp;
+&nbsp;/**
+&nbsp; * 이 클래스는 사용자로부터 입력을 받는 것과, 입력을 받기 위한 프롬프트 출력을 담당한다.
+&nbsp; *
+&nbsp; * &lt;p&gt;이 클래스는 인스턴스 생성과 상속이 불가능한 정적 유틸 클래스이다.
+&nbsp; */
+&nbsp;
+&nbsp;public final class InputView {
+&nbsp;    private static final String READ_REPOSITORY_NAME_PROMPT = &quot;리포지토리 이름을 입력해 주세요: &quot;;
+&nbsp;    private static final String INPUT_IS_EMPTY = &quot;입력이 비었습니다.&quot;;
+&nbsp;
+&nbsp;    private InputView() {
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 리포지토리 이름을 입력받아 리턴한다.
+&nbsp;     *
+&nbsp;     * @throws IllegalArgumentException 입력이 비어 있으면 발생한다.
+&nbsp;     */
+&nbsp;    public static String readRepositoryName() {
+<b class="fc">&nbsp;        System.out.print(READ_REPOSITORY_NAME_PROMPT);</b>
+&nbsp;
+<b class="fc">&nbsp;        String repositoryName = readLine();</b>
+<b class="pc">&nbsp;        if (repositoryName.isEmpty()) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException(INPUT_IS_EMPTY);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return repositoryName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static String readLine() {
+<b class="fc">&nbsp;        return Console.readLine().strip();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-20 16:23</div>
+</div>
+</body>
+</html>

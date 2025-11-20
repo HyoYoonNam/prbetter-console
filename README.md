@@ -13,11 +13,14 @@
 [![JUnit5](https://img.shields.io/badge/Test-JUnit5-25A162?style=flat-square&logo=junit5&logoColor=white)](https://junit.org/junit5/)
 [![Mockito](https://img.shields.io/badge/Test-Mockito-81B518?style=flat-square&logo=mockito&logoColor=white)](https://site.mockito.org/)
 [![NsTest](https://img.shields.io/badge/Test_Utils-NsTest-00C854?style=flat-square&logo=woowabrothers&logoColor=white)](https://github.com/woowacourse-projects/mission-utils)
+![Coverage](https://img.shields.io/badge/Coverage-80%25-green?style=flat-square)
 
 ### Meta
 [![WoowaCourse](https://img.shields.io/badge/Project_For-WoowaCourse_Pre--course-00C854?style=flat-square&logo=woowabrothers&logoColor=white)](https://woowacourse.github.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 ![Last Commit](https://img.shields.io/github/last-commit/hyoyoonnam/prbetter-console?style=flat-square&color=important)
+
+#### TODO: javadoc 링크 뱃지 달기
 
 ---
 **prbetter는 특정 리포지토리에 있는 Pull request 중 하나를 랜덤으로 추천해 주는 콘솔 애플리케이션입니다.**
@@ -30,6 +33,8 @@
 [설치와 사용 방법](#-설치와-사용-방법)  
 [주요 기능](#-주요-기능)  
 [프로덕션 코드 구조](#-프로덕션-코드-구조)  
+[클래스 다이어그램](#-클래스-다이어그램)  
+[테스트 결과](#-테스트-결과)  
 [더 많은 정보](#-더-많은-정보)
 
 ## 💡 개발 배경
@@ -110,12 +115,18 @@ src/main/java/prbetter
     └── OutputView.java
 ```
 
-## ✅ 테스트 코드
+## 🔀 클래스 다이어그램
+![class-diagram](assets/class-diagram.png)
+
+## ✅ 테스트 결과
 ```console
 SUCCESS: Executed 23 tests in 1.8s
 ```
 
 ![test-passed-result](assets/test-passed-result.png)
+
+#### TODO: 전체 코드 커버리지 html 연결하기
+![test-coverage](assets/test-coverage.png)
 
 ## 💬 더 많은 정보
 prbetter를 개발하면서의 설계 과정, 문제와 해결 등은 [노션](https://rudevico.notion.site/2a03a35cb1a180e3a612e6084985a478?source=copy_link)에서 확인할 수 있습니다.
